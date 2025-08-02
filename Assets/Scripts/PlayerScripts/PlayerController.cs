@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleAttack()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             animator.SetTrigger("Attack");
             int index = (int)currentElement;
