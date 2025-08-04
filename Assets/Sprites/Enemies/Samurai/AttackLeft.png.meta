@@ -155,8 +155,8 @@ TextureImporter:
         y: 12
         width: 59
         height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.43468753, y: 0.5437889}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -177,8 +177,8 @@ TextureImporter:
         y: 12
         width: 57
         height: 51
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.45544246, y: 0.6373772}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -199,8 +199,8 @@ TextureImporter:
         y: 15
         width: 57
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.4738799, y: 0.6112971}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -221,8 +221,8 @@ TextureImporter:
         y: 15
         width: 57
         height: 49
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.47388017, y: 0.6161748}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -239,7 +239,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 19f4ce8be92c70b489b788953f51bbca
     internalID: 0
     vertices: []
     indices: 

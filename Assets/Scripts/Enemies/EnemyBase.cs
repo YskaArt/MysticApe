@@ -17,6 +17,11 @@ public abstract class EnemyBase : MonoBehaviour
     protected Animator animator;
     protected Transform player;
 
+    private Coroutine colorCoroutine;
+    private Color baseColor = Color.white;
+    public int MaxHealth => maxHealth;
+    public int CurrentHealth => currentHealth;
+
     protected enum EnemyState
     {
         Idle, Patrol, Chase, Attack, Dead
@@ -101,7 +106,7 @@ public abstract class EnemyBase : MonoBehaviour
     {
     }
 
-    protected void UpdateAnimator()
+    protected virtual void UpdateAnimator()
     {
         animator.SetFloat("MoveX", moveDirection.x);
         animator.SetFloat("MoveY", moveDirection.y);
@@ -145,6 +150,7 @@ public abstract class EnemyBase : MonoBehaviour
         {
             yield return new WaitForSeconds(interval);
             currentHealth -= damagePerTick;
+            BossHealthUI.Instance?.UpdateHealth(currentHealth, maxHealth);
 
             // Feedback visual por cada quemadura
             StartCoroutine(ChangeColorTemporarily(Color.red, 0.2f));
@@ -166,9 +172,21 @@ public abstract class EnemyBase : MonoBehaviour
         if (enemySprite == null)
             yield break;
 
-        Color originalColor = enemySprite.color;
+        // Si ya hay una corrutina de color corriendo, la cancelamos
+        if (colorCoroutine != null)
+        {
+            StopCoroutine(colorCoroutine);
+            enemySprite.color = baseColor; // restaurar antes de iniciar nuevo cambio
+        }
+
+        colorCoroutine = StartCoroutine(ColorChangeRoutine(color, duration));
+    }
+
+    private IEnumerator ColorChangeRoutine(Color color, float duration)
+    {
         enemySprite.color = color;
         yield return new WaitForSeconds(duration);
-        enemySprite.color = originalColor;
+        enemySprite.color = baseColor;
+        colorCoroutine = null;
     }
 }
