@@ -6,8 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 3c0201ca97a04dc409a7f4b54585764d
+  - enabled: 1
     path: Assets/Scenes/VillageTutorial.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: 8569d0614fbc5a74cb5ecbcf9dab3272
+  - enabled: 1
+    path: Assets/Scenes/VictoryPanel.unity
+    guid: f278ef96506fe6647894fb616e5355fa
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

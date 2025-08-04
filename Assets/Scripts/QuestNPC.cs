@@ -1,23 +1,50 @@
 using UnityEngine;
+
 public class QuestNPC : NPCBase
 {
-    [SerializeField] private ItemData requiredItem;
-    [SerializeField] private ItemData rewardItem;
-    [SerializeField] private bool questCompleted = false;
+    [Header("Configuración de Quest")]
+    [SerializeField] protected bool requiresItem = true;
+    [SerializeField] protected ItemData requiredItem;
+    [SerializeField] protected ItemData rewardItem;
+    [SerializeField] protected bool questCompleted = false;
+    protected bool questRewarded = false;
 
     public override void Interact()
     {
         InventorySystem inventory = Object.FindFirstObjectByType<InventorySystem>();
 
-        if (!questCompleted && inventory.HasItem(requiredItem))
+        if (inventory == null)
         {
-            questCompleted = true;
-            inventory.AddItem(rewardItem);
-            DialogueManager.Instance.ShowMessage($"Gracias por el {requiredItem.ItemName}! Recibiste {rewardItem.ItemName}.");
+            Debug.LogError("InventorySystem no encontrado.");
+            return;
+        }
+
+        if (!questCompleted)
+        {
+            if (requiresItem && inventory.HasItem(requiredItem))
+            {
+                questCompleted = true;
+                inventory.AddItem(rewardItem);
+                DialogueManager.Instance.ShowMessage($"Gracias por el {requiredItem.ItemName}! Recibiste {rewardItem.ItemName}.");
+                questRewarded = true;
+            }
+            else
+            {
+                base.Interact(); // diálogo por defecto
+            }
         }
         else
         {
-            base.Interact();
+            if (!questRewarded && rewardItem != null)
+            {
+                inventory.AddItem(rewardItem);
+                DialogueManager.Instance.ShowMessage($"Recibiste {rewardItem.ItemName}.");
+                questRewarded = true;
+            }
+            else
+            {
+                DialogueManager.Instance.StartDialogue(npcName, npcIcon, dialogueLines);
+            }
         }
     }
 }

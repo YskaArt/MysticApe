@@ -41,15 +41,15 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected abstract void UpdateState();
 
-    public virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage, PlayerController.Element sourceElement)
     {
         currentHealth -= damage;
 
+        // Reacciones por tipo de elemento (pueden ser sobreescritas en enemigos específicos)
+        Debug.Log($"{gameObject.name} fue golpeado por {sourceElement}");
+
         if (currentHealth <= 0)
-        {
             Die();
-        }
-       
     }
 
     protected virtual void Die()

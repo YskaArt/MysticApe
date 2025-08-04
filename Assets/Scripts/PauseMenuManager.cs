@@ -14,6 +14,8 @@ public class PauseMenuManager : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+        isPaused = true;
+        Time.timeScale = 1;
     }
 
     public void ForceClosePause()

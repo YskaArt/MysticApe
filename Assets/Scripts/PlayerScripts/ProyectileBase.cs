@@ -2,37 +2,55 @@ using UnityEngine;
 
 public class ProjectileBase : MonoBehaviour
 {
-    [SerializeField] private float speed = 10f;
-    [SerializeField] private float lifetime = 3f;
-    [SerializeField] private int damage = 1;
+    [Header("Propiedades Generales")]
+    [SerializeField] protected float speed = 10f;
+    [SerializeField] protected float lifetime = 3f;
+    [SerializeField] protected int damage = 1;
 
-    private Vector2 direction;
+    protected PlayerController.Element element;
+    protected Vector2 direction;
 
-    private void Start()
+    protected Rigidbody2D rb;
+
+    protected virtual void Start()
     {
-        GetComponent<Rigidbody2D>().linearVelocity = direction * speed;
+        rb = GetComponent<Rigidbody2D>();
+        rb.linearVelocity = direction * speed;
+        Destroy(gameObject, lifetime);
     }
 
-    public void SetDirection(Vector2 dir)
+    public virtual void SetDirection(Vector2 dir)
     {
         direction = dir.normalized;
 
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
-
-        Destroy(gameObject, lifetime);
     }
 
-    
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public virtual void SetElement(PlayerController.Element e)
     {
-        
-        if (collision.CompareTag("Enemy"))
-        {
-            collision.GetComponent<EnemyBase>()?.TakeDamage(damage);
+        element = e;
+    }
 
-            Destroy(gameObject);
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        // Interacción con enemigos
+        if (collision.CompareTag("Enemy") && collision.TryGetComponent(out EnemyBase enemy))
+        {
+            enemy.TakeDamage(damage, element);
+            OnHit();
         }
+
+        // Interacción con Dummy
+        if (collision.TryGetComponent(out TrainingDummy dummy))
+        {
+            dummy.Hit(element);
+            OnHit();
+        }
+    }
+
+    protected virtual void OnHit()
+    {
+        Destroy(gameObject);
     }
 }

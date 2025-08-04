@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class NPCBase : MonoBehaviour, IInteractable
 {
-    [SerializeField] private string[] dialogueLines;
-    [SerializeField] private Sprite npcIcon;
-    [SerializeField] private string npcName;
+    [SerializeField] protected string[] dialogueLines;
+    [SerializeField] protected Sprite npcIcon;
+    [SerializeField] protected string npcName;
 
     public virtual void Interact()
     {

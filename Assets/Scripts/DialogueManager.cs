@@ -1,5 +1,7 @@
 using UnityEngine;
+using System;
 using System.Collections;
+
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance;
@@ -8,7 +10,10 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TMPro.TextMeshProUGUI dialogueText;
     [SerializeField] private TMPro.TextMeshProUGUI npcNameText;
     [SerializeField] private UnityEngine.UI.Image npcIcon;
+
     public bool IsDialogueActive => dialoguePanel.activeSelf;
+
+    private Action onDialogueFinishedCallback; // Nuevo callback
 
     private void Awake()
     {
@@ -19,7 +24,6 @@ public class DialogueManager : MonoBehaviour
     public void ShowMessage(string message)
     {
         StartDialogue("", null, new string[] { message });
-        dialoguePanel.SetActive(true);
         dialogueText.text = message;
         npcNameText.text = "";
         npcIcon.sprite = null;
@@ -27,8 +31,16 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(string name, Sprite icon, string[] lines)
     {
+        StartDialogue(name, icon, lines, null); // Llama a la sobrecarga con null
+    }
+
+    
+    public void StartDialogue(string name, Sprite icon, string[] lines, Action onFinished)
+    {
         if (PauseMenuManager.Instance != null)
             PauseMenuManager.Instance.ForceClosePause();
+
+        onDialogueFinishedCallback = onFinished;
 
         dialoguePanel.SetActive(true);
         npcNameText.text = name;
@@ -45,5 +57,9 @@ public class DialogueManager : MonoBehaviour
         }
 
         dialoguePanel.SetActive(false);
+
+        // Ejecutar el callback si existe
+        onDialogueFinishedCallback?.Invoke();
+        onDialogueFinishedCallback = null;
     }
 }
