@@ -191,10 +191,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c1119ea64484d4a9e60f079f6c96c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
-  moveSpeed: 2
+  maxHealth: 2
+  enemyScoreValue: 100
+  moveSpeed: 3
+  enemySprite: {fileID: 1529260115026610424}
   currentState: 0
-  shootCooldown: 3
+  shootCooldown: 4
   attackRange: 5
   bombPrefab: {fileID: 5347288472888961338, guid: bd2f8ca90618f3944bfdb4d938161544, type: 3}
   firePointUp: {fileID: 7956792882686419733}

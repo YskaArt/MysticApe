@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Amulet
   m_EditorClassIdentifier: 
   itemName: Amulet
-  description: "Amuleto Dorado que se me cay\xF3 del banano "
+  description: "Amuleto Dorado que se me cay\xF3 del banano (Se puede vender)"
   icon: {fileID: 9090724530243979454, guid: 1e01c438136db704cbc82e6472bc9317, type: 3}
+  isSellable: 1
+  sellValue: 600

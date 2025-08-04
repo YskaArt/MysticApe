@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Level1.unity
     guid: 8569d0614fbc5a74cb5ecbcf9dab3272
   - enabled: 1
+    path: Assets/Scenes/ShogunPalace.unity
+    guid: 38f6624ddb9647e428f518aa4339bd76
+  - enabled: 1
     path: Assets/Scenes/VictoryPanel.unity
     guid: f278ef96506fe6647894fb616e5355fa
   m_configObjects:

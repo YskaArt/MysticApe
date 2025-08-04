@@ -23,9 +23,11 @@ public class QuestNPC : NPCBase
         {
             if (requiresItem && inventory.HasItem(requiredItem))
             {
+                
                 questCompleted = true;
+                inventory.RemoveItem(requiredItem);
                 inventory.AddItem(rewardItem);
-                DialogueManager.Instance.ShowMessage($"Gracias por el {requiredItem.ItemName}! Recibiste {rewardItem.ItemName}.");
+                DialogueManager.Instance.ShowMessage($"Hmmmmm, gracias por el {requiredItem.ItemName}! Recibiste {rewardItem.ItemName}.");
                 questRewarded = true;
             }
             else

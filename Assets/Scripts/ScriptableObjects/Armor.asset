@@ -15,3 +15,5 @@ MonoBehaviour:
   itemName: Armor
   description: "Armadura reluciente, pero prefieres ir como est\xE1s (se puede vender)"
   icon: {fileID: -2757887451555568444, guid: f68dca0a96fbd154cb168654ffec4101, type: 3}
+  isSellable: 1
+  sellValue: 200

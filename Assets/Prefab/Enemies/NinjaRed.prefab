@@ -129,11 +129,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda350cc5117586419d2b6bad376c324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
-  moveSpeed: 2
+  maxHealth: 5
+  enemyScoreValue: 100
+  moveSpeed: 1.5
+  enemySprite: {fileID: 4156085066380252279}
   currentState: 0
   attackRange: 0.8
-  attackCooldown: 1
+  attackCooldown: 1.5
   weaponUp: {fileID: 8667426710542495562}
   weaponDown: {fileID: 3742883548334583455}
   weaponLeft: {fileID: 3028677762992861242}

@@ -222,8 +222,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 450c9d5eb3e16a643a61911f9dd24b87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 2
+  enemyScoreValue: 100
   moveSpeed: 2
+  enemySprite: {fileID: 6623170860170754859}
   currentState: 0
   shootCooldown: 2
   shootRange: 8

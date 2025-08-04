@@ -11,10 +11,21 @@ public class InventorySystem : MonoBehaviour
             items.Add(item);
     }
 
-    public List<ItemData> GetItems() => items;
     public bool HasItem(ItemData item)
     {
         return items.Contains(item);
     }
-}
 
+   
+    public void RemoveItem(ItemData item)
+    {
+        if (items.Contains(item))
+            items.Remove(item);
+    }
+
+    
+    public List<ItemData> GetItems()
+    {
+        return new List<ItemData>(items);
+    }
+}

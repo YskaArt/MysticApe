@@ -41,6 +41,13 @@ public class PlayerHealth : MonoBehaviour
             StartCoroutine(InvulnerabilityRoutine());
         }
     }
+    public void Heal(int amount)
+    {
+        currentHealth += amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        UpdateHeartsUI();
+    }
+
 
     private void UpdateHeartsUI()
     {
@@ -70,6 +77,6 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log("GAME OVER");
-        // Acá llamás al GameManager o UI para mostrar pantalla de Game Over
+        GameOverManager.Instance.TriggerGameOver();
     }
 }
